@@ -24,7 +24,7 @@
 
 <div class="container">
 
-<a class="navbar-brand" href="#">Online Store</a>
+<a class="navbar-brand" href="{{ route('home.index') }}">Online Store</a>
 
 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
 
@@ -38,10 +38,14 @@ aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navi
 
 <div class="navbar-nav ms-auto">
 
-<a class="nav-link active" href="#">Home</a>
+<a class="nav-link active" href="{{ route('home.index') }}">Home</a>
 
-<a class="nav-link active" href="#">About</a>
+<a class="nav-link active" href="{{ route('product.index') }}">Products</a>
+<a class="nav-link active" href="{{ route('product.create') }}">Create a product</a>
 
+<a class="nav-link active" href="{{ route('home.about') }}">About</a>
+
+<a class="nav-link active" href="{{ route('home.contact') }}">Contact</a>
 </div>
 
 </div>
