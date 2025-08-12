@@ -6,32 +6,32 @@
 
 @section('content')
 
-<div class="container">
+    <div class="container">
 
-<div class="row">
+        <div class="row">
 
-<div class="col-lg-4 ms-auto">
+            <div class="col-lg-4 ms-auto">
 
-<p class="lead">{{ $description }}</p>
+                <p class="lead">{{ $description }}</p>
 
-</div>
+            </div>
 
-<div class="col-lg-4 me-auto">
+            <div class="col-lg-4 me-auto">
 
-<p class="lead">{{ $email }}</p>
+                <p class="lead">{{ $email }}</p>
 
-<div class="col-lg-4 me-auto">
+                <div class="col-lg-4 me-auto">
 
-<p class="lead">{{ $number }}</p>
+                    <p class="lead">{{ $number }}</p>
 
-<div class="col-lg-25 me-auto">
+                    <div class="col-lg-25 me-auto">
 
-<p class="lead">{{ $address }}</p>
+                        <p class="lead">{{ $address }}</p>
 
-</div>
+                    </div>
 
-</div>
+                </div>
 
-</div>
+            </div>
 
 @endsection
