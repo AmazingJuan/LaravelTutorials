@@ -2,40 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class ProductController extends Controller
 {
-    public static $products = [
-        ['id' => '1', 'name' => 'TV', 'description' => 'Best TV', 'price' => '5000'],
-        ['id' => '2', 'name' => 'iPhone', 'description' => 'Best iPhone', 'price' => '1000'],
-        ['id' => '3', 'name' => 'Chromecast', 'description' => 'Best Chromecast', 'price' => '200'],
-        ['id' => '4', 'name' => 'Glasses', 'description' => 'Best Glasses', 'price' => '400'],
-    ];
-
     public function index(): View
     {
         $viewData = [];
         $viewData['title'] = 'Products - Online Store';
         $viewData['subtitle'] = 'List of products';
-        $viewData['products'] = ProductController::$products;
+        $viewData['products'] = Product::all();
 
         return view('product.index')->with('viewData', $viewData);
     }
 
     public function show(string $id): View|RedirectResponse
     {
-        $product = null;
-        foreach (ProductController::$products as $prod) {
-            if ($prod['id'] === $id) {
-                $product = $prod;
-                break;
-            }
-        }
-
-        if (! $product) {
+        try {
+            $product = Product::findOrFail($id);
+        } catch (ModelNotFoundException $e) {
             return redirect()->route('home.index');
         }
 
@@ -61,6 +50,9 @@ class ProductController extends Controller
             'name' => 'required',
             'price' => 'required|gt:0',
         ]);
+
+        Product::create($request->only(['name', 'price']));
+
         $viewData = []; // to be sent to the view
         $viewData['title'] = 'Successfully created a product - Online Store';
 
